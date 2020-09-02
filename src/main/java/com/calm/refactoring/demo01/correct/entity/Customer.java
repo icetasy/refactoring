@@ -38,15 +38,7 @@ public class Customer {
         Enumeration rentalsEnumeration = rentals.elements();
         while(rentalsEnumeration.hasMoreElements()) {
             Rental each = (Rental) rentalsEnumeration.nextElement();
-
-            // add frequent renter points
-            // 积分:一部电影 +1分
-            frequentRenterPoints ++;
-            // add bonus for a two day new release rental
-            // 积分:如果是新发行电影,且租2天及以上 +1分
-            if((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1) {
-                frequentRenterPoints ++;
-            }
+            frequentRenterPoints += each.getFrequentRenterPoints();
 
             // show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";

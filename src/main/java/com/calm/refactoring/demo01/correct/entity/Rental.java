@@ -50,4 +50,15 @@ public class Rental {
         }
         return result;
     }
+
+    int getFrequentRenterPoints() {
+        // add frequent renter points
+        // 积分:一部电影 +1分
+        // add bonus for a two day new release rental
+        // 积分:如果是新发行电影,且租2天及以上 +2分
+        if((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1) {
+            return 2;
+        }
+        return 1;
+    }
 }
