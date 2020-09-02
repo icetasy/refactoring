@@ -25,40 +25,12 @@ public class Rental {
         return movie;
     }
 
+
     double getCharge() {
-        double result = 0;
-        // determine amounts for each line
-        switch(getMovie().getPriceCode()) {
-            // 已发行电影,第一天2元,之后每天1.5元
-            case Movie.REGULAR:
-                result +=2;
-                if(getDaysRented() > 2) {
-                    result += (getDaysRented() - 2) * 1.5;
-                }
-                break;
-            // 新发行电影,每天3元
-            case Movie.NEW_RELEASE:
-                result += getDaysRented() * 3;
-                break;
-            // 儿童电影,头2天共1.5元,之后每天1.5元
-            case Movie.CHILDRENS:
-                result +=1.5;
-                if(getDaysRented() > 3) {
-                    result += (getDaysRented() - 3) * 1.5;
-                }
-                break;
-        }
-        return result;
+        return movie.getCharge(daysRented);
     }
 
     int getFrequentRenterPoints() {
-        // add frequent renter points
-        // 积分:一部电影 +1分
-        // add bonus for a two day new release rental
-        // 积分:如果是新发行电影,且租2天及以上 +2分
-        if((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1) {
-            return 2;
-        }
-        return 1;
+        return movie.getFrequentRenterPoints(daysRented);
     }
 }
