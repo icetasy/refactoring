@@ -39,7 +39,7 @@ public class Customer {
         while(rentalsEnumeration.hasMoreElements()) {
             double thisAmount = 0;
             Rental each = (Rental) rentalsEnumeration.nextElement();
-            thisAmount = amountFor(each);
+            thisAmount = each.getCharge();
 
             // add frequent renter points
             // 积分:一部电影 +1分
@@ -60,7 +60,4 @@ public class Customer {
         return result;
     }
 
-    private double amountFor(Rental aRental) {
-        return aRental.getCharge();
-    }
 }
