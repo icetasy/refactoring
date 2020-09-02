@@ -37,9 +37,7 @@ public class Customer {
 
         Enumeration rentalsEnumeration = rentals.elements();
         while(rentalsEnumeration.hasMoreElements()) {
-            double thisAmount = 0;
             Rental each = (Rental) rentalsEnumeration.nextElement();
-            thisAmount = each.getCharge();
 
             // add frequent renter points
             // 积分:一部电影 +1分
@@ -51,8 +49,8 @@ public class Customer {
             }
 
             // show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
+            totalAmount += each.getCharge();
         }
         // add footer lines
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
