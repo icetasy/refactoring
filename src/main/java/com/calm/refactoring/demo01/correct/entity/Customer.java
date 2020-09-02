@@ -60,29 +60,29 @@ public class Customer {
         return result;
     }
 
-    private double amountFor(Rental each) {
-        double thisAmount = 0;
+    private double amountFor(Rental aRental) {
+        double result = 0;
         // determine amounts for each line
-        switch(each.getMovie().getPriceCode()) {
+        switch(aRental.getMovie().getPriceCode()) {
             // 已发行电影,第一天2元,之后每天1.5元
             case Movie.REGULAR:
-                thisAmount +=2;
-                if(each.getDaysRented() > 2) {
-                    thisAmount += (each.getDaysRented() - 2) * 1.5;
+                result +=2;
+                if(aRental.getDaysRented() > 2) {
+                    result += (aRental.getDaysRented() - 2) * 1.5;
                 }
                 break;
             // 新发行电影,每天3元
             case Movie.NEW_RELEASE:
-                thisAmount += each.getDaysRented() * 3;
+                result += aRental.getDaysRented() * 3;
                 break;
             // 儿童电影,头2天共1.5元,之后每天1.5元
             case Movie.CHILDRENS:
-                thisAmount +=1.5;
-                if(each.getDaysRented() > 3) {
-                    thisAmount += (each.getDaysRented() - 3) * 1.5;
+                result +=1.5;
+                if(aRental.getDaysRented() > 3) {
+                    result += (aRental.getDaysRented() - 3) * 1.5;
                 }
                 break;
         }
-        return thisAmount;
+        return result;
     }
 }
